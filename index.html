@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="A one-button orbital slingshot game about impossible timing." />
+    <meta name="theme-color" content="#0a0712" />
+    <title>Void Relay</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0712'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23ff6542' stroke-width='3'/%3E%3Ccircle cx='50' cy='32' r='5' fill='%23d9ff70'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="game" aria-label="Void Relay orbital game field"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="https://github.com/surajshetty09/void-relay" target="_blank" rel="noreferrer">
+        <span class="brand-mark"><i></i></span>
+        <span><b>VOID RELAY</b><small>ORBITAL COURIER SYSTEM</small></span>
+      </a>
+      <div class="sector"><span>CURRENT SECTOR</span><strong id="sector">01</strong></div>
+      <button class="sound" id="sound" aria-label="Toggle sound" aria-pressed="true"><i></i><span>SIGNAL ON</span></button>
+    </header>
+
+    <aside class="score panel">
+      <span>DISTANCE</span>
+      <strong id="score">000000</strong>
+      <small>PERSONAL RECORD <b id="best">000000</b></small>
+    </aside>
+
+    <aside class="relay panel">
+      <span>RELAYS</span>
+      <strong><b id="relays">00</b><i>/</i><b id="target">05</b></strong>
+      <div class="relay-bar"><i id="relay-fill"></i></div>
+    </aside>
+
+    <aside class="signal panel">
+      <span>SIGNAL CHARGES</span>
+      <div id="charges"><i></i><i></i><i></i></div>
+    </aside>
+
+    <div class="streak panel" id="streak-box"><span>LINK STREAK</span><strong id="streak">×01</strong></div>
+    <div class="prompt" id="prompt">TAP / SPACE TO LAUNCH</div>
+
+    <section class="intro is-visible" id="intro">
+      <div class="hero-copy">
+        <span class="eyebrow">DEEP RANGE TRANSMISSION / 04:19 UTC</span>
+        <h1>VOID<br /><em>RELAY</em></h1>
+        <p>Thread a courier through a collapsing network. One input releases the craft. Gravity handles the rest.</p>
+        <button class="primary" id="start">BEGIN TRANSMISSION <span>↗</span></button>
+      </div>
+      <div class="brief">
+        <div class="diagram" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+        <div class="rule"><span>01</span><div><b>WAIT IN ORBIT</b><small>READ THE TRAJECTORY</small></div></div>
+        <div class="rule"><span>02</span><div><b>RELEASE</b><small>TAP, CLICK, OR SPACE</small></div></div>
+        <div class="rule"><span>03</span><div><b>LINK THE NEXT WELL</b><small>KEEP THE SIGNAL ALIVE</small></div></div>
+      </div>
+    </section>
+
+    <section class="card" id="checkpoint" aria-live="polite">
+      <span>SECTOR LINKED</span>
+      <h2>RELAY<br />COMPLETE</h2>
+      <p id="checkpoint-copy">Five clean transfers. The next network is online.</p>
+      <button class="primary" id="continue">ENTER NEXT SECTOR <span>→</span></button>
+    </section>
+
+    <section class="intro end" id="gameover" hidden aria-live="polite">
+      <div class="hero-copy">
+        <span class="eyebrow">TRANSMISSION TERMINATED</span>
+        <h2>LOST<br /><em>IN VOID</em></h2>
+        <p>Your courier crossed <b id="final-relays">0</b> gravity wells and transmitted <b id="final-score">0</b> distance units.</p>
+        <button class="primary" id="restart">RECONNECT <span>↻</span></button>
+      </div>
+      <div class="coordinates"><span>LAST KNOWN VECTOR</span><b id="final-vector">+00.000 / −00.000</b><small>NO RETURN SIGNAL</small></div>
+    </section>
+
+    <section class="card pause" id="pause"><span>TRANSMISSION HELD</span><h2>PAUSED</h2><p>Press P to resume.</p></section>
+    <footer><span>ONE BUTTON / INFINITE ORBITS</span><span>VR–26 // BUILD 10.22</span></footer>
+
+    <script src="game.js"></script>
+  </body>
+</html>
